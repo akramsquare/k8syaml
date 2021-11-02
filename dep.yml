@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akram-deployment
+  labels:
+    app: akrampip
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akrampip
+  template:
+    metadata:
+      labels:
+        app: akrampip
+    spec:
+      containers:
+      - name: akrampip
+        image: akramdoc1/akrampip
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: akram-svc
+spec:
+  selector:
+    role: akrampip
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 31000
+  type: NodePort
