@@ -26,10 +26,10 @@ metadata:
   name: akram-svc
 spec:
   selector:
-    role: akrampip
+    app: akrampip
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
-      nodePort: 
+      nodePort: 32000
   type: NodePort
